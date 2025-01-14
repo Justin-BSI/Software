@@ -1,0 +1,74 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\CaseWare\Working Papers\2024.00\Templates]
+
+;CaseWare: List as a template > ClientDocs - Individuals
+[HKEY_LOCAL_MACHINE\SOFTWARE\CaseWare\Working Papers\2024.00\Templates\{11eda954-0e98-4cb9-8b29-c9ecba72d613}]
+"Name"="ClientDocs - Individuals"
+"File"="C:\\2_Resources\\Templates\\BAIWay ClientDocs - Individuals\\BAIWay ClientDocs - Individuals"
+"Introduction"=dword:00000002
+"User"=dword:00000001
+"Packaged"=dword:00000000
+"UsedAsDocLib"=dword:00000000
+"UserDefinedIcon"="C:\\2_Resources\\Templates\\BAI.ico"
+
+;CaseWare: List as a template > ClientDocs - Components
+[HKEY_LOCAL_MACHINE\SOFTWARE\CaseWare\Working Papers\2024.00\Templates\{f469cfb3-7719-4502-bd47-449e4fe23f01}]
+"Name"="ClientDocs - Components"
+"File"="C:\\2_Resources\\Templates\\ClientDocs - Components\\ClientDocs - Components"
+"Introduction"=dword:00000002
+"User"=dword:00000001
+"Packaged"=dword:00000000
+"UsedAsDocLib"=dword:00000000
+"PerformCVDataDocManCopyAction"=dword:00000001
+"AllowRepackage"=dword:00000000
+"UserDefinedIcon"="C:\\2_Resources\\Templates\\BAI.ico"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\CaseWare\Working Papers\2024.00\Templates\{91252630-f11d-419c-b439-adcfba7889f3}]
+"Name"="Training"
+"File"="C:\\2_Resources\\Document Libraries\\BAIWay ClientDocs\\BAIWay ClientDocs"
+"Introduction"=dword:00000002
+"User"=dword:00000001
+"Packaged"=dword:00000000
+"UsedAsDocLib"=dword:00000001
+"PerformCVDataDocManCopyAction"=dword:00000001
+"AllowRepackage"=dword:00000000
+"ShowMakePatch"=dword:00000001
+
+
+
+HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\CaseWare\Working Papers\2024.00\Templates]
+
+;CaseWare: List as a template > ClientDocs - Individuals
+[HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\CaseWare\Working Papers\2024.00\Templates\{11eda954-0e98-4cb9-8b29-c9ecba72d613}]
+"Name"="ClientDocs - Individuals"
+"File"="C:\\2_Resources\\Templates\\BAIWay ClientDocs - Individuals\\BAIWay ClientDocs - Individuals"
+"Introduction"=dword:00000002
+"User"=dword:00000001
+"Packaged"=dword:00000000
+"UsedAsDocLib"=dword:00000000
+"UserDefinedIcon"="C:\\2_Resources\\Templates\\BAI.ico"
+
+;CaseWare: List as a template > ClientDocs - Components
+[HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\CaseWare\Working Papers\2024.00\Templates\{f469cfb3-7719-4502-bd47-449e4fe23f01}]
+"Name"="ClientDocs - Components"
+"File"="C:\\2_Resources\\Templates\\ClientDocs - Components\\ClientDocs - Components"
+"Introduction"=dword:00000002
+"User"=dword:00000001
+"Packaged"=dword:00000000
+"UsedAsDocLib"=dword:00000000
+"PerformCVDataDocManCopyAction"=dword:00000001
+"AllowRepackage"=dword:00000000
+"UserDefinedIcon"="C:\\2_Resources\\Templates\\BAI.ico"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\CaseWare\Working Papers\2024.00\Templates\{91252630-f11d-419c-b439-adcfba7889f3}]
+"Name"="Training"
+"File"="C:\\2_Resources\\Document Libraries\\BAIWay ClientDocs\\BAIWay ClientDocs"
+"Introduction"=dword:00000002
+"User"=dword:00000001
+"Packaged"=dword:00000000
+"UsedAsDocLib"=dword:00000001
+"PerformCVDataDocManCopyAction"=dword:00000001
+"AllowRepackage"=dword:00000000
+"ShowMakePatch"=dword:00000001
+

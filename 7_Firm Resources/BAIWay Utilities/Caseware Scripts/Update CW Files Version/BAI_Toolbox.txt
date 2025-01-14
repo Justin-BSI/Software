@@ -1,0 +1,650 @@
+'**************************************************************
+'
+'Author:			  					  Gerry Wilton, CPA, CA
+'Company:					     BAI Bragonier & Associates Inc
+'Version:    				 					        rev.006
+'Date: 					         					 2022-02-16
+'Purpose:  
+'						Functions used for scripting developed by Gerry
+'
+'**************************************************************
+
+'--------------------------------------------------------------------------------------------
+'Constants for use with document.removeex
+'	Const cwtDeleteNA = 0 						'Fail if Multiply Linked on Document Manager
+'	Const cwtDeleteReferenceOnly = 1 			'Remove Document Manager Reference Only if Multiply Linked
+'	Const cwtDeleteReferenceAndDocument = 2 	'Remove Document Manager Reference and Document Always
+'	Const cwtDeleteToRecyclebin = 3 			'Send the deleted document to CaseWare Recycle Bin
+	Const cwG = 22								'set the length of the GUID
+
+'Constants for Data Store Admin username and password
+	Const cwUser = "sup"
+	Const cwPass = "sup"
+
+
+'Constants used in functions
+	Const ForReading = 1
+	Const ForAppending = 8
+	Const cftNone = 0
+	Const cftCopy = 1
+	
+'CaseWare version type constants
+	Const vtAPP = 0
+	Const vtAPPDate = 3
+	Const vtAPPFull = 2
+	Const vtFile = 4
+	Const vtTLB = 1
+
+
+'CaseWare document positioning constants
+	Const ptAfterBottom = 1
+	Const ptBeforeTop = 0
+	Const ptLevelAfter = 3
+	Const ptLevelBefore = 2
+
+'CaseWare document types
+	Const dtAutomatic = 1
+	Const dtCaseView = 2
+	Const dtExcel = 9
+	Const dtExternalLink = 4
+	Const dtFolder = 0
+	Const dtIdea = 7
+	Const dtLink = 5
+	Const dtManual = 3
+	Const dtURL = 6
+	Const dtWord = 8
+
+'--------------------------------------------------------------------------------------------
+'Function to create a dictionary of a list, used for fast lookups
+'--------------------------------------------------------------------------------------------
+	Function simpleDictionary
+							
+		'Create a document dictionary for the root structure
+				Dim dict		'<-----  Dictionary of documents
+				set dict = createobject("Scripting.Dictionary")
+					dict.CompareMode = vbTextCompare 				'makes the keys case insensitive	
+				Set simpleDictionary = dict
+
+	
+	End Function
+	
+'--------------------------------------------------------------------------------------------
+'Create a dictionary of the document properties
+'--------------------------------------------------------------------------------------------
+	Function details(docname,docID,docGUID,docFname)
+	  Set details = CreateObject("Scripting.Dictionary")
+	  	details.CompareMode = vbTextCompare 'makes the keys case insensitive
+		  details.Add "Name", docName
+		  details.Add "ID", docID
+		  details.Add "GUID", docGUID
+		  details.Add "Fname", docFname
+	End Function
+
+'--------------------------------------------------------------------------------------------
+'Add tags to the client file
+'--------------------------------------------------------------------------------------------
+	Sub afTags(cwClient)
+					'Make sure the AutoFile tag is setup properly
+					Dim afTag 
+					Set afTag = cwClient.Tags.Get("AutoFile")
+						If afTag Is Nothing Then
+							cwClient.Tags.Add("AutoFile")
+							Set afTag = cwClient.Tags.Get("AutoFile")
+						End If
+						With afTag
+							.Name = "AutoFile"
+							.Hidden = False
+							.Color = "#803600"
+						End With
+						cwClient.Tags.Commit()
+	End Sub
+
+'--------------------------------------------------------------------------------------------
+'Function to create the logging file and append to itself
+'--------------------------------------------------------------------------------------------
+	function logger(outfile)
+			Dim objFSO			'object for file system
+			'Create the FSO
+				Set objFSO = createobject("Scripting.FileSystemObject")
+	
+		
+		'Create the logging text file
+			If objFSO.FileExists(outFile) Then
+				Set logger = objFSO.OpenTextFile(outFile,ForAppending,True)
+			Else
+				Set logger = objFSO.CreateTextFile(outFile,True)
+			End If
+	
+			
+	End Function
+
+'--------------------------------------------------------------------------------------------
+'Function to retrieve a file name given a full path
+'
+'--------------------------------------------------------------------------------------------
+	Function getFileName(inFile)
+	'Declare and set the items needed to read the listing of CaseWare files to update
+			Dim inFSO
+			'Create the FSO
+				Set inFSO = createobject("Scripting.FileSystemObject")
+				set objFile = inFSO.GetFile(inFile)
+				
+				getFileName = inFSO.GetFileName(objFile)
+
+				Set inFSO = Nothing
+	End Function
+
+'--------------------------------------------------------------------------------------------
+'Function to retrieve the parent folder name of a given file
+'
+'--------------------------------------------------------------------------------------------
+	Function getFolderName(inFile)
+	'Declare and set the items needed to read the listing of CaseWare files to update
+			Dim inFSO
+			'Create the FSO
+				Set inFSO = createobject("Scripting.FileSystemObject")
+				set objFile = inFSO.GetFile(inFile)
+				
+				getFolderName = inFSO.GetParentFolderName(objFile)
+
+				Set inFSO = Nothing
+	End Function
+
+'--------------------------------------------------------------------------------------------
+'Function to retrieve the parent folder name of a given folder
+'
+'--------------------------------------------------------------------------------------------
+	Function getparentFolder(inFile)
+	'Declare and set the items needed to read the listing of CaseWare files to update
+			Dim inFSO
+			'Create the FSO
+				Set inFSO = createobject("Scripting.FileSystemObject")
+				set objFile = inFSO.GetFolder(inFile)
+				
+				getparentFolder = inFSO.GetParentFolderName(objFile)
+				
+				Set inFSO = Nothing
+	End Function
+
+'--------------------------------------------------------------------------------------------
+'Rename a given folder with new name
+'
+'--------------------------------------------------------------------------------------------
+	Function renameFolder(fldr1,fldr2)
+	'Declare and set the items needed to read the listing of CaseWare files to update
+			Dim inFSO
+			Dim newFolder
+			'Create the FSO
+				Set inFSO = createobject("Scripting.FileSystemObject")
+				newFolder = getparentFolder(fldr1) & "\" & fldr2
+				If Not(fldrExists(newFolder)) Then
+					inFSO.MoveFolder fldr1,newFolder
+				End If			
+				renameFolder = newFolder
+				
+				Set inFSO = Nothing
+	End Function
+
+
+'--------------------------------------------------------------------------------------------
+'Function to retrieve a file listing from a text file that has the path and file on each line
+'Returns an array with each line as a separate element
+'--------------------------------------------------------------------------------------------
+	Function getFileList(inFile)
+	'Declare and set the items needed to read the listing of CaseWare files to update
+			Dim inFSO, cwFileList
+			'Create the FSO
+				Set inFSO = createobject("Scripting.FileSystemObject")
+				
+				Set cwFileList = inFSO.OpenTextFile(inFile,ForReading)
+					getFileList = Split(cwFileList.ReadAll,vbCrLf)
+					cwFileList.Close
+				Set inFSO = Nothing
+	End Function
+
+'--------------------------------------------------------------------------------------------
+'Create a function to display a popup message
+'--------------------------------------------------------------------------------------------
+	Sub popMSG(msgNote, displayTime)
+		Dim wShell
+		Set wShell = CreateObject("Wscript.Shell")
+			wShell.Popup msgNote, displayTime, "Progress"
+		Set wShell = Nothing
+		
+	End Sub
+
+'--------------------------------------------------------------------------------------------
+'Get CaseWare Metadata - verify the installed version of CW matches the current version of the file being processed
+'Returns True or False
+'--------------------------------------------------------------------------------------------
+	Function cwCheck(filenm)
+			'Create the Caseware appliaction object
+				Dim CaseWare	'object to control CaseWare
+				Set CaseWare = CreateObject("CaseWare.Application")
+
+	
+			'Get the version of CaseWare App
+				Dim cwAppVersion
+				cwAppVersion = Left(CaseWare.Version(vtAPP),4)
+			
+			'Get the version of the Client file
+				Dim cwFileVersion
+				cwFileVersion = Left(CaseWare.Clients.GetMetaData(filenm).Item("CWUserFriendlyFileVersion").value,4)
+			
+			'Return the result if they match or not
+				If cwAppVersion = cwFileVersion Then 
+					cwCheck = True
+				Else
+					cwCheck = False
+					
+			End If
+			
+			Set CaseWare = Nothing
+			
+	End Function
+	
+'--------------------------------------------------------------------------------------------
+'Uncompress CaseWare file
+
+'--------------------------------------------------------------------------------------------
+	Function cwUncompress(filenm)
+			'Create the Caseware appliaction object
+				Dim CaseWare	'object to control CaseWare
+				Set CaseWare = CreateObject("CaseWare.Application")
+				
+
+				CaseWare.Clients.Uncompress(filenm)
+				Set CaseWare = Nothing
+			
+	End Function
+	
+'--------------------------------------------------------------------------------------------
+'Compress CaseWare file
+
+'--------------------------------------------------------------------------------------------
+' Constant Name	Description	Value
+' cDefault					None								0
+' cOmitBackups				Omit Backups						1
+' cOmitIndices				Omit Database Indices				2
+' cOmitBackupAndIndicies	Omit Backups and Database Indices	3
+' cCompressAllSubFolders	Compress All SubFolders				4
+	Function cwCompress(filenm)
+			'Create the Caseware appliaction object
+				Dim CaseWare	'object to control CaseWare
+				Set CaseWare = CreateObject("CaseWare.Application")
+				
+
+				CaseWare.Clients.Compress2 filenm, 0
+				Set CaseWare = Nothing
+			
+	End Function
+
+'--------------------------------------------------------------------------------------------
+'Function to check if the file type appears to be '.ac'
+'Returns True or False
+'--------------------------------------------------------------------------------------------
+	Function cwType(fname)
+					'Error check - make sure it is a CaseWare file
+						If LCase(Right(fname,3))=".ac" Then
+							cwType = True
+						
+
+						Else
+	
+							cwType = False
+						End if	
+	End Function
+	
+'--------------------------------------------------------------------------------------------
+'Function to check if the file type appears to be '.ac_'
+'Returns True or False
+'--------------------------------------------------------------------------------------------
+	Function cwTypeComp(fname)
+					'Error check - make sure it is a compressed CaseWare file
+						If LCase(Right(fname,4))=".ac_" Then
+							cwTypeComp = True
+						
+
+						Else
+	
+							cwTypeComp = False
+						End if	
+	End Function
+'--------------------------------------------------------------------------------------------
+'Function to flush Sync changes
+'--------------------------------------------------------------------------------------------
+	Function cwFlush(fname)
+			'Create the Caseware appliaction object
+				Dim CaseWare	'object to control CaseWare
+				Dim cwClient    'Object To hold client
+				set CaseWare = CreateObject("CaseWare.Application")
+			
+			'flush
+				Set cwClient = CaseWare.Clients.Open(fname, cwUser,cwPass)
+				cwClient.FlushSynchronizationChanges(True)
+
+			'Update the document manager for changes - important for Tags, good idea for all
+				CaseWare.UpdateUI	
+
+			'Clear connection To the client
+				CaseWare.Clients.Close(fname)	
+				Set cwClient = Nothing
+				
+			'Clear connection To CaseWare
+				set CaseWare = Nothing
+	End Function
+	
+
+'--------------------------------------------------------------------------------------------
+'Function to flush Sync changes and clear sync information
+'--------------------------------------------------------------------------------------------
+	Function cwSyncClear(fname)
+			'Create the Caseware appliaction object
+				Dim CaseWare	'object to control CaseWare
+				Dim cwClient    'Object To hold client
+				Dim cwFolder	'Object to hold folder
+				Dim syncFolder  'Object to hold sync folder
+				set CaseWare = CreateObject("CaseWare.Application")
+			
+			'flush
+				Set cwClient = CaseWare.Clients.Open(fname, cwUser,cwPass)
+				cwClient.FlushSynchronizationChanges(True)
+
+			'Update the document manager for changes - important for Tags, good idea for all
+				CaseWare.UpdateUI	
+
+			'Clear connection To the client
+				CaseWare.Clients.Close(fname)	
+				Set cwClient = Nothing
+				
+			'Clear connection To CaseWare
+				set CaseWare = Nothing
+				
+			'Get sync folder
+				cwFolder = getFolderName(fname)
+				syncFolder = cwFolder & "\" & "_Sync"
+
+			'Check to see if _Sync folder exists
+				If fldrExists(syncFolder) Then
+					deleteFolder(syncFolder)
+				End If
+				
+
+	End Function	
+	
+'--------------------------------------------------------------------------------------------
+'Function to check if the CW security is on
+'Returns True or False
+'--------------------------------------------------------------------------------------------
+	Function cwTypeSecured(fname)
+			'Create the Caseware appliaction object
+				Dim CaseWare	'object to control CaseWare
+				Set CaseWare = CreateObject("CaseWare.Application")
+			
+			'Get security Status
+				cwTypeSecured =	CaseWare.Clients.Open(fname, cwUser,cwPass).Security.Protection
+				
+			'Clear connection To CaseWare
+				set CaseWare = Nothing
+	End Function
+
+'--------------------------------------------------------------------------------------------
+'Function to Get lock down status
+'--------------------------------------------------------------------------------------------
+	Function cwLDStatus(fname)
+			'Create the Caseware appliaction object
+				Dim CaseWare	'object to control CaseWare
+				Set CaseWare = CreateObject("CaseWare.Application")
+			
+			' Get Lock down status
+				Dim cwStatus
+				cwStatus = UCase(trim(CaseWare.Clients.GetMetaData(fname).Item("CWLockdownStatus").value))
+
+				If (cwStatus = "L") or (cwStatus = "P") Then 
+					cwLDStatus = True
+				Else
+					cwLDStatus = False
+				End If
+
+			'Clear connection To CaseWare
+				set CaseWare = Nothing
+
+	End Function
+
+'--------------------------------------------------------------------------------------------
+'Function to lock down
+'--------------------------------------------------------------------------------------------
+	Function cwLockDown(fname)
+			'Create the Caseware appliaction object
+				Dim CaseWare	'object to control CaseWare
+				Set CaseWare = CreateObject("CaseWare.Application")
+			
+			'Lock down
+				CaseWare.Clients.Open(fname,cwUser,cwPass).Lockdown()
+				CaseWare.Clients.Close(fname)
+				'MsgBox "LockDown completed  - " & fname
+			'Clear connection To CaseWare
+				Set CaseWare = Nothing
+
+	End Function
+
+'--------------------------------------------------------------------------------------------
+'Function to convert
+'--------------------------------------------------------------------------------------------
+	Function cwConvert(fname)
+			'Create the Caseware appliaction object
+				Dim CaseWare	'object to control CaseWare
+				Set CaseWare = CreateObject("CaseWare.Application")
+			
+			'Convert
+				CaseWare.Clients.Convert(fname)
+
+			'Clear connection To CaseWare
+				set CaseWare = Nothing
+
+	End Function
+
+'--------------------------------------------------------------------------------------------
+'Function to turn On security
+'--------------------------------------------------------------------------------------------
+	Function cwSecured(fname)
+			'Create the Caseware appliaction object
+				Dim CaseWare	'object to control CaseWare
+				Set CaseWare = CreateObject("CaseWare.Application")
+			
+			'Turn On Security
+				CaseWare.Clients.Open(fname).Security.SetProtection True, cwUser,cwPass
+				CaseWare.Clients.Close(fname)
+
+			'Clear connection To CaseWare
+				set CaseWare = Nothing
+	End Function
+
+'--------------------------------------------------------------------------------------------
+'Function to turn Off security
+'--------------------------------------------------------------------------------------------
+	Function cwUnSecured(fname)
+			'Create the Caseware appliaction object
+				Dim CaseWare	'object to control CaseWare
+				Dim cwClient    'Object To hold client
+				set CaseWare = CreateObject("CaseWare.Application")
+			
+			'Turn Off Security
+				Set cwClient = CaseWare.Clients.Open(fname, cwUser,cwPass)
+
+					cwClient.Security.SetProtection False, cwUser,cwPass
+
+			'Clear connection To the client
+				CaseWare.Clients.Close(fname)	
+				Set cwClient = Nothing
+				
+			'Clear connection To CaseWare
+				set CaseWare = Nothing
+	End Function
+	
+'--------------------------------------------------------------------------------------------
+'Function to check to see if the file exists
+'Returns True or False
+'--------------------------------------------------------------------------------------------
+	Function cwExists(fname)
+		'Create the FSO for writing to the log
+			Dim objFSO
+				Set objFSO = createobject("Scripting.FileSystemObject")
+					'Check to see if the file exists
+						cwExists = objFSO.FileExists(fname)
+	
+	End Function
+
+'--------------------------------------------------------------------------------------------
+'Function to check to see if the folder exists
+'Returns True or False
+'--------------------------------------------------------------------------------------------
+	Function fldrExists(fname)
+		'Create the FSO for writing to the log
+			Dim objFSO
+				Set objFSO = createobject("Scripting.FileSystemObject")
+					'Check to see if the file exists
+						fldrExists = objFSO.FolderExists(fname)
+						
+	
+	End Function
+
+'--------------------------------------------------------------------------------------------
+'Function to check to see if the folder exists
+'Returns True or False
+'--------------------------------------------------------------------------------------------
+	Function deleteFolder(fname)
+			Dim objFSO
+				Set objFSO = createobject("Scripting.FileSystemObject")
+					'Try to delete folder
+						objFSO.DeleteFolder(fname)
+				'Check to see if successful
+					If fldrExists(fname) Then
+						deleteFolder = false
+					Else
+						deleteFolder = True
+					End If
+	End Function
+
+'----------------------------------------------------------------------------------
+'Function to obtain a tab delimited text file
+'Returns an 2D array where each row of the array consists of the delimited elements
+'----------------------------------------------------------------------------------
+	Function getTabFileList(inFile)
+			Dim fso
+			Dim oFile
+			Dim arrline
+			Dim arrItem
+			Dim i
+			Dim arrMain()
+			Dim sFileLocation, strResults
+			
+			Const forReading = 1
+			
+		 
+		 
+			Set fso = CreateObject("Scripting.FileSystemObject")
+				'sFileLocation = "C:\1_Clients\RP Folder Fix.txt"
+				sFileLocation = inFile
+				Set oFile = fso.OpenTextFile(sFileLocation, forReading, False)
+				
+			Do While oFile.AtEndOfStream <> True
+				strResults = oFile.ReadAll
+			Loop
+			
+		' Close the file
+			oFile.Close
+			
+		' Release the object from memory
+			Set oFile = Nothing
+			
+		' Return the contents of the file if not Empty
+			If Trim(strResults) <> "" Then
+				
+				' Create an Array of the Text File
+				arrline = Split(strResults, vbNewLine)
+			End If
+		 
+			For i = 0 To UBound(arrline)
+				
+				If len(arrline(i)) < 2 Then
+					' checks for a blank line at the end of stream
+					Exit For
+				End If 
+				
+				ReDim Preserve arrMain(i)
+				
+					arrMain(i) = Split(arrline(i), vbTab)
+				
+					'WScript.Echo i & ",0 contains: " & arrMain(i)(0)
+					'WScript.Echo i & ",1 contains: " & arrMain(i)(1)
+					'WScript.Echo i & ",2 contains: " & arrMain(i)(2)
+			Next
+		
+			getTabFileList=arrMain
+		 
+	End Function
+
+'----------------------------------------------------------------------------------
+
+' Description:
+'   Sorts a dictionary by either key or item
+' Parameters:
+'   objDict - the dictionary to sort
+'   intSort - the field to sort (1=key, 2=item)
+' Returns:
+'   A dictionary sorted by intSort
+'
+'----------------------------------------------------------------------------------
+Function SortDictionary(objDict, intSort)
+
+  ' declare constants
+  Const dictKey  = 1
+  Const dictItem = 2
+
+  ' declare our variables
+  Dim strDict()
+  Dim objKey
+  Dim strKey,strItem
+  Dim X,Y,Z
+
+  ' get the dictionary count
+  Z = objDict.Count
+
+  ' we need more than one item to warrant sorting
+  If Z > 1 Then
+    ' create an array to store dictionary information
+    ReDim strDict(Z,2)
+    X = 0
+    ' populate the string array
+    For Each objKey In objDict
+        strDict(X,dictKey)  = CStr(objKey)
+        strDict(X,dictItem) = CStr(objDict(objKey))
+        X = X + 1
+    Next
+
+    ' perform a a shell sort of the string array
+    For X = 0 To (Z - 2)
+      For Y = X To (Z - 1)
+        If StrComp(strDict(X,intSort),strDict(Y,intSort),vbTextCompare) > 0 Then
+            strKey  = strDict(X,dictKey)
+            strItem = strDict(X,dictItem)
+            strDict(X,dictKey)  = strDict(Y,dictKey)
+            strDict(X,dictItem) = strDict(Y,dictItem)
+            strDict(Y,dictKey)  = strKey
+            strDict(Y,dictItem) = strItem
+        End If
+      Next
+    Next
+
+    ' erase the contents of the dictionary object
+    objDict.RemoveAll
+
+    ' repopulate the dictionary with the sorted information
+    For X = 0 To (Z - 1)
+      objDict.Add strDict(X,dictKey), strDict(X,dictItem)
+    Next
+
+  End If
+
+End Function

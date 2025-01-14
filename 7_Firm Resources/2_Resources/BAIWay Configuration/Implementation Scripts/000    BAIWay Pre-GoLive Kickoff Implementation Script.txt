@@ -1,0 +1,104 @@
+chcp 1252
+@Echo off
+setlocal EnableDelayedExpansion
+REM ======================================================================================================================================================================
+REM
+REM Company:	BAI Bragonier & Associates Inc
+REM Version:	rev.003
+REM Date:	2022-09-06
+REM 
+REM Purpose:  
+REM		Appy default Pre-GoLive BAIWay ClientDocs for all applications
+REM
+REM Instructions:
+REM		This script can be called from another script (eg the users logon script)
+REM 		or may be run manually to configure the user's default settings
+REM
+REM		You can control which users the script applies to by including their user names in
+REM		"K:\7_Firm Resources\2_Resources\BAIWay Configuration\Member Firm Specific\BAIWay ClientDocs Pre-GoLive Kickoff Users.txt"
+REM		More details can be found in the  BAIWay ClientDocs Pre-GoLive Kickoff Users.txt file		
+REM ======================================================================================================================================================================
+
+
+TITLE Set variable for script tracking
+  ::  Replace <TrackingID> with the new unique tracking ID to be used
+  ::  example --->  Set TrackingID=<TrackingID>
+     Set TrackingID=20220207_%computername%BAIWay_Pre-GoLive.txt
+
+:: Check to see if the script applies to the user
+	call :getException
+	if "!runException!" EQU "No" (
+		Echo Script does not apply to current user, exiting
+		Exit /B
+		)
+
+::Check to see if script needs to run. If you do not want it to run only once, REM the goto End line (4 lines down)
+		if not exist "%appdata%\BAIWay\" (mkdir "%appdata%\BAIWay\")
+		if not exist "%appdata%\BAIWay\%TrackingID%" goto BAIWaySetup
+			echo Script did not run since it has already run once
+REM			goto End
+
+:BAIWaySetup
+	Title Please wait while Application Configuration script is executed...
+
+	:: Configuring CaseWare Working Papers
+		reg import "C:\2_Resources\BAIWay Configuration\Registry Pokes\BAIAcademy CaseWare 2022 Working Papers + CaseView Registry Poke.reg"
+		reg import "C:\2_Resources\BAIWay Configuration\Registry Pokes\BAIAcademy CaseWare 2023 Working Papers + CaseView Registry Poke.reg"
+		reg import "C:\2_Resources\BAIWay Configuration\Registry Pokes\BAIAcademy CaseWare 2024 Working Papers + CaseView Registry Poke.reg"
+
+	:: Configuring CaseView
+		robocopy "C:\2_Resources\BAIWay Configuration\Files to Push\CaseView" "%LOCALAPPDATA%\CaseWare\Working Papers\2022.00\CaseView" CvRibbon.xml
+		robocopy "C:\2_Resources\BAIWay Configuration\Files to Push\CaseView" "%LOCALAPPDATA%\CaseWare\Working Papers\2023.00\CaseView" CvRibbon.xml
+		robocopy "C:\2_Resources\BAIWay Configuration\Files to Push\CaseView" "%LOCALAPPDATA%\CaseWare\Working Papers\2024.00\CaseView" CvRibbon.xml
+
+	:: ClientDocs Adobe Acrobat configuration
+		Call "C:\2_Resources\BAIWay Configuration\Implementation scripts\ClientDocs Adobe Acrobat configuration.bat"
+
+	:: ClientDocs Doc.It PDF Editor configuration
+		Call "C:\2_Resources\BAIWay Configuration\Implementation scripts\ClientDocs Doc.It PDF Editor configuration.bat"
+
+	:: ClientDocs Microsoft Office configuration
+		Call "C:\2_Resources\BAIWay Configuration\Implementation scripts\ClientDocs Microsoft Office configuration.bat"
+		
+	:: ClientDocs Microsoft Windows configuration
+		Call "C:\2_Resources\BAIWay Configuration\Implementation scripts\ClientDocs Microsoft Windows configuration.bat"
+
+	:: ClientDocs PDF-XChange configuration
+		Call "C:\2_Resources\BAIWay Configuration\Implementation scripts\ClientDocs PDF-XChange configuration.bat"
+
+
+	Echo Configuring Firm Specific customizations
+		reg import "C:\2_Resources\BAIWay Configuration\Member Firm Specific\Firm Windows Drag and Drop settings.reg"
+
+:Fin2
+	REM  Make file to track BAIWay settings deployment
+	echo BAIWay settings deployed > "%appdata%\BAIWay\%TrackingID%"
+				
+:End
+Exit /b
+REM End of BAIWay Pre-GoLive Implementation Script  v22.03.24
+
+REM ============================================================================================
+:getException
+REM This subroutine checks to see if the script should run for a user
+REM The script will run for a user if either the username is listed in the exception file (see below)
+REM or if "allusers" are listed in the exception file
+REM ============================================================================================
+
+
+	REM Set the path to the username
+		set exceptionFile=C:\2_Resources\BAIWay Configuration\Member Firm Specific\BAIWay ClientDocs Pre-GoLive Kickoff Users.txt
+	
+	REM Default to not run the exception
+		set runException=No
+	
+	REM Check to see if the user is in the exception file list
+		findstr /X /I %username% "!exceptionFile!" >nul 2>nul
+		if !ERRORLEVEL! EQU 0 (set runException=Yes)
+
+	REM Check to see if the allusers are to receive the exception
+		findstr /X /I allusers "!exceptionFile!" >nul 2>nul
+		if !ERRORLEVEL! EQU 0 (set runException=Yes)
+
+	REM subroutine complete, return to script
+		Exit /B

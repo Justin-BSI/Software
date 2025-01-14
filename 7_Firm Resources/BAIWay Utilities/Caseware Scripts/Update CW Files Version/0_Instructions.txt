@@ -1,0 +1,38 @@
+BAIWay Update CW Files to current version instructions
+
+============================================================================================================================================================
+Required files and usage:
+============================================================================================================================================================
+	Keep all files in the same folder as the script.
+
+	1_Generate CW file list.bat .....
+		Used to generate the listing of CW files, modify the cwPath variable to change the scan location
+		outputs the file cwupdatelisting.txt to the location 'scriptdir\Output\cwupdatelisting.txt'
+			The output WILL overwrite the existing cwupdatelisting.txt if it exists
+
+	CaseWare Convert All.vbs ..... 
+		To convert each file in the filelisting (BAIWay_Convert_List.txt)
+		Outputs a log file to the specified location within the script
+			The log file may be opened while the script is running to check on the progress
+			The log file will append, not overwrite, to existing log with the same name
+
+	BAI_Toolbox.txt .....
+		Contains functions used in the script 'CaseWare Convert All'
+
+
+
+============================================================================================================================================================
+How to use:
+============================================================================================================================================================	
+
+1.  Configure the cwPath variable in the '1_Generate CW file list.bat'
+2.  Run '1_Generate CW file list.bat', it will create the Output subfolder and BAIWay_Convert_List.txt when done
+3.  Configure the uCompress variable to True / False if you would like to convert compressed files also
+4.  Configure the rCompress variable to True / False if you would like to recompress files after conversion
+5.  Configure teh aCompress variable to True / False if you would like to compress all files after conversion
+4.  Run 'CaseWare Convert All.vbs'
+
+Note:  Update the password constant in BAI_Toolbox.txt if data store protection is turned on and the default password has been changed for 'sup'
+
+
+

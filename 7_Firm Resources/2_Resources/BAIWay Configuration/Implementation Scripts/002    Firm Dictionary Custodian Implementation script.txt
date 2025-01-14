@@ -1,0 +1,11 @@
+::Check to see if script needs to run
+::Replace "Dictionary Custodian Username" with the user name of the individual
+	if /I "%username%"=="Dictionary Custodian Username" (
+		::  Configure MS Office Dictionary settings
+			reg import "C:\2_Resources\BAIWay Configuration\Member Firm Specific\Firm Dictionary Custodian\Firm Dictionary Custodian - MS Office Registry Poke.reg"
+		
+		::  Configure CaseView Dictionary settings
+			robocopy "C:\2_Resources\BAIWay Configuration\Member Firm Specific\Firm Dictionary Custodian" "C:\ProgramData\CaseWare\Working Papers\2022.00\CaseView" cvwin.ini
+			robocopy "C:\2_Resources\BAIWay Configuration\Member Firm Specific\Firm Dictionary Custodian" "C:\ProgramData\CaseWare\Working Papers\2023.00\CaseView" cvwin.ini
+			robocopy "C:\2_Resources\BAIWay Configuration\Member Firm Specific\Firm Dictionary Custodian" "C:\ProgramData\CaseWare\Working Papers\2024.00\CaseView" cvwin.ini
+		)

@@ -1,0 +1,271 @@
+Windows Registry Editor Version 5.00
+
+;========================================================================================================================================
+;========================================  CaseView Quick Access Toolbar settings  ======================================================
+;========================================================================================================================================
+	[HKEY_CURRENT_USER\Software\CaseWare International\Working Papers\2024.00\CaseView]
+	;CaseView: Show QAT below the ribbon and minimize the ribbon
+	[-HKEY_CURRENT_USER\Software\CaseWare International\Working Papers\2024.00\CaseView\BCGWorkspace\BCGRibbonBar-59398]
+	[HKEY_CURRENT_USER\Software\CaseWare International\Working Papers\2024.00\CaseView\BCGWorkspace\BCGRibbonBar-59398]
+	"QuickAccessToolbarOnTop"=dword:00000000
+	"IsMinimized"=dword:00000001
+
+;========================================================================================================================================
+;========================================  CaseWare Working Papers Quick Access Toolbar settings  =======================================
+;========================================================================================================================================
+	[-HKEY_CURRENT_USER\Software\CaseWare International\Working Papers\2024.00\BCGWorkspace]
+	[HKEY_CURRENT_USER\Software\CaseWare International\Working Papers\2024.00\BCGWorkspace]
+	"InputMode"=dword:00000000
+
+	;Working Papers: Show QAT below the ribbon and minimize the ribbon
+	[HKEY_CURRENT_USER\Software\CaseWare International\Working Papers\2024.00\BCGWorkspace\BCGRibbonBar-59398]
+	"QuickAccessToolbarOnTop"=dword:00000000
+	"IsMinimized"=dword:00000001
+
+	[HKEY_CURRENT_USER\Software\CaseWare International\Working Papers\2024.00\BCGWorkspace\BCGCommandManager]
+	"CommandsWithoutImages"=hex:00,00
+	"MenuUserImages"=hex:00,00
+
+	[HKEY_CURRENT_USER\Software\CaseWare International\Working Papers\2024.00\BCGWorkspace\BCGControlBarVersion]
+	"Major"=dword:00000017
+	"Minor"=dword:00000000
+
+	[HKEY_CURRENT_USER\Software\CaseWare International\Working Papers\2024.00\BCGWorkspace\BCGPBaseControlBar--1]
+	"IsVisible"=dword:00000001
+
+	[HKEY_CURRENT_USER\Software\CaseWare International\Working Papers\2024.00\BCGWorkspace\BCGPBaseControlBar-1]
+	"IsVisible"=dword:00000001
+
+	[HKEY_CURRENT_USER\Software\CaseWare International\Working Papers\2024.00\BCGWorkspace\BCGPBaseControlBar-15066]
+	"IsVisible"=dword:00000001
+
+	[HKEY_CURRENT_USER\Software\CaseWare International\Working Papers\2024.00\BCGWorkspace\BCGPBaseControlBar-214]
+	"IsVisible"=dword:00000001
+
+	[HKEY_CURRENT_USER\Software\CaseWare International\Working Papers\2024.00\BCGWorkspace\BCGPBaseControlBar-57127]
+	"IsVisible"=dword:00000001
+
+	[HKEY_CURRENT_USER\Software\CaseWare International\Working Papers\2024.00\BCGWorkspace\BCGPBaseControlBar-57253]
+	"IsVisible"=dword:00000001
+
+	[HKEY_CURRENT_USER\Software\CaseWare International\Working Papers\2024.00\BCGWorkspace\BCGPBaseControlBar-57314]
+	"IsVisible"=dword:00000000
+
+	[HKEY_CURRENT_USER\Software\CaseWare International\Working Papers\2024.00\BCGWorkspace\BCGPBaseControlBar-59393]
+	"IsVisible"=dword:00000001
+
+	[HKEY_CURRENT_USER\Software\CaseWare International\Working Papers\2024.00\BCGWorkspace\BCGPBaseControlBar-59398]
+	"IsVisible"=dword:00000001
+
+	[HKEY_CURRENT_USER\Software\CaseWare International\Working Papers\2024.00\BCGWorkspace\BCGPControlBar--1]
+	"ID"=dword:00000000
+	"RectRecentFloat"=hex:0a,00,00,00,0a,00,00,00,6e,00,00,00,6e,00,00,00
+	"RectRecentDocked"=hex:00,00,00,00,2c,00,00,00,80,07,00,00,1c,04,00,00
+	"RecentFrameAlignment"=dword:00001000
+	"RecentRowIndex"=dword:00000000
+	"IsFloating"=dword:00000000
+	"MRUWidth"=dword:00007fff
+	"PinState"=dword:00000000
+
+	[HKEY_CURRENT_USER\Software\CaseWare International\Working Papers\2024.00\BCGWorkspace\BCGPControlBar-1]
+	"ID"=dword:00000001
+	"RectRecentFloat"=hex:0a,00,00,00,0a,00,00,00,6e,00,00,00,6e,00,00,00
+	"RectRecentDocked"=hex:01,00,00,00,01,00,00,00,f1,00,00,00,3b,01,00,00
+	"RecentFrameAlignment"=dword:00001000
+	"RecentRowIndex"=dword:00000000
+	"IsFloating"=dword:00000000
+	"MRUWidth"=dword:00007fff
+	"PinState"=dword:00000000
+
+	[HKEY_CURRENT_USER\Software\CaseWare International\Working Papers\2024.00\BCGWorkspace\BCGPControlBar-15066]
+	"ID"=dword:00000000
+	"RectRecentFloat"=hex:0a,00,00,00,0a,00,00,00,6e,00,00,00,6e,00,00,00
+	"RectRecentDocked"=hex:00,00,00,00,ee,03,00,00,80,07,00,00,09,04,00,00
+	"RecentFrameAlignment"=dword:00001000
+	"RecentRowIndex"=dword:00000000
+	"IsFloating"=dword:00000000
+	"MRUWidth"=dword:00007fff
+	"PinState"=dword:00000000
+
+	[HKEY_CURRENT_USER\Software\CaseWare International\Working Papers\2024.00\BCGWorkspace\BCGPControlBar-214]
+	"ID"=dword:000000d6
+	"RectRecentFloat"=hex:b4,ff,ff,ff,be,01,00,00,8b,01,00,00,f5,01,00,00
+	"RectRecentDocked"=hex:00,00,00,00,00,00,00,00,da,01,00,00,1c,00,00,00
+	"RecentFrameAlignment"=dword:00002000
+	"RecentRowIndex"=dword:00000000
+	"IsFloating"=dword:00000000
+	"MRUWidth"=dword:000000e8
+	"PinState"=dword:00000000
+
+	[HKEY_CURRENT_USER\Software\CaseWare International\Working Papers\2024.00\BCGWorkspace\BCGPControlBar-57127]
+	"ID"=dword:0000df27
+	"RectRecentFloat"=hex:0a,03,00,00,7a,01,00,00,b8,03,00,00,b1,01,00,00
+	"RectRecentDocked"=hex:48,03,00,00,00,00,00,00,f0,03,00,00,1c,00,00,00
+	"RecentFrameAlignment"=dword:00002000
+	"RecentRowIndex"=dword:00000000
+	"IsFloating"=dword:00000000
+	"MRUWidth"=dword:00000018
+	"PinState"=dword:00000000
+
+	[HKEY_CURRENT_USER\Software\CaseWare International\Working Papers\2024.00\BCGWorkspace\BCGPControlBar-57253]
+	"ID"=dword:0000dfa5
+	"RectRecentFloat"=hex:7e,01,00,00,db,01,00,00,e9,02,00,00,12,02,00,00
+	"RectRecentDocked"=hex:da,01,00,00,00,00,00,00,48,03,00,00,1c,00,00,00
+	"RecentFrameAlignment"=dword:00002000
+	"RecentRowIndex"=dword:00000000
+	"IsFloating"=dword:00000000
+	"MRUWidth"=dword:00000163
+	"PinState"=dword:00000000
+
+	[HKEY_CURRENT_USER\Software\CaseWare International\Working Papers\2024.00\BCGWorkspace\BCGPControlBar-57314]
+	"ID"=dword:0000dfe2
+	"RectRecentFloat"=hex:0a,00,00,00,0a,00,00,00,6e,00,00,00,6e,00,00,00
+	"RectRecentDocked"=hex:da,01,00,00,1c,00,00,00,fd,01,00,00,38,00,00,00
+	"RecentFrameAlignment"=dword:00002000
+	"RecentRowIndex"=dword:00000001
+	"IsFloating"=dword:00000000
+	"MRUWidth"=dword:00000018
+	"PinState"=dword:00000000
+
+	[HKEY_CURRENT_USER\Software\CaseWare International\Working Papers\2024.00\BCGWorkspace\BCGPControlBar-59393]
+	"ID"=dword:00000000
+	"RectRecentFloat"=hex:0a,00,00,00,0a,00,00,00,6e,00,00,00,6e,00,00,00
+	"RectRecentDocked"=hex:00,00,00,00,09,04,00,00,80,07,00,00,1c,04,00,00
+	"RecentFrameAlignment"=dword:00001000
+	"RecentRowIndex"=dword:00000000
+	"IsFloating"=dword:00000000
+	"MRUWidth"=dword:00007fff
+	"PinState"=dword:00000000
+
+	[HKEY_CURRENT_USER\Software\CaseWare International\Working Papers\2024.00\BCGWorkspace\BCGPControlBar-59398]
+	"ID"=dword:00000000
+	"RectRecentFloat"=hex:0a,00,00,00,0a,00,00,00,6e,00,00,00,6e,00,00,00
+	"RectRecentDocked"=hex:00,00,00,00,00,00,00,00,80,07,00,00,44,00,00,00
+	"RecentFrameAlignment"=dword:00001000
+	"RecentRowIndex"=dword:00000000
+	"IsFloating"=dword:00000000
+	"MRUWidth"=dword:00007fff
+	"PinState"=dword:00000000
+
+	[HKEY_CURRENT_USER\Software\CaseWare International\Working Papers\2024.00\BCGWorkspace\BCGPDockManager-128]
+	"DockingCBAndSliders"=hex:00,00,00,00,02,00,00,00,00,00,00,00,00,40,00,00,00,\
+	  00,00,00,ff,ff,ff,ff,ff,ff,ff,ff,24,09,00,00,ab,00,00,00,28,09,00,00,fd,04,\
+	  00,00,00,00,00,00,02,00,00,00,04,00,00,00,01,00,00,00,00,00,00,00,00,00,00,\
+	  00,80,bb,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,01,00,00,00,\
+	  80,bb,00,00,01,00,00,00,80,bb,00,00,00,00,00,00,00,00,00,00,00,00,00,00
+
+	[HKEY_CURRENT_USER\Software\CaseWare International\Working Papers\2024.00\BCGWorkspace\BCGRibbonBar-59398]
+	"QuickAccessToolbarCommands"=hex:3f,00,00,00,00,00,bc,e0,00,00,00,00,00,00,00,\
+	  00,00,00,07,e1,00,00,09,e1,00,00,00,00,00,00,00,00,00,00,b5,e1,00,00,fb,10,\
+	  00,00,fa,10,00,00,a5,9d,00,00,63,e1,00,00,00,00,00,00,00,00,00,00,3e,df,00,\
+	  00,85,cb,00,00,00,00,00,00,00,00,00,00,c3,9c,00,00,1b,df,00,00,cd,9c,00,00,\
+	  00,00,00,00,00,00,00,00,ab,e1,00,00,c4,9c,00,00,00,00,00,00,00,00,00,00,73,\
+	  e0,00,00,82,e0,00,00,68,9c,00,00,00,00,00,00,00,00,00,00,3f,df,00,00,8c,e0,\
+	  00,00,e7,e1,00,00,00,00,00,00,00,00,00,00,d0,9c,00,00,3a,e1,00,00,d4,9c,00,\
+	  00,0f,16,00,00,4a,9c,00,00,00,00,00,00,00,00,00,00,15,e0,00,00,16,e0,00,00,\
+	  0e,e0,00,00,0f,e0,00,00,00,00,00,00,00,00,00,00,0b,e0,00,00,a2,e1,00,00,ce,\
+	  9c,00,00,00,00,00,00,00,00,00,00,2d,00,00,00,bf,9c,00,00,80,e6,00,00,36,e1,\
+	  00,00,75,e1,00,00,00,00,00,00,00,00,00,00
+
+	[HKEY_CURRENT_USER\Software\CaseWare International\Working Papers\2024.00\BCGWorkspace\BCGToolBar--1]
+	"Name"=""
+	"Buttons"=hex:00,00,00,00,01,00,00,00,00,00,00,00,00,00,00,ff,7f,00,00
+
+	[HKEY_CURRENT_USER\Software\CaseWare International\Working Papers\2024.00\BCGWorkspace\BCGToolBar-1]
+	"Name"=""
+	"Buttons"=hex:00,20,00,00,01,00,00,00,0f,00,ff,ff,01,00,16,00,43,42,43,47,50,\
+	  54,6f,6f,6c,62,61,72,4d,65,6e,75,42,75,74,74,6f,6e,20,f1,00,00,00,00,04,00,\
+	  ff,ff,ff,ff,08,26,52,65,73,74,6f,72,65,00,00,00,00,00,00,00,00,01,00,00,00,\
+	  00,00,00,00,01,00,00,00,00,00,00,00,00,00,00,00,01,00,00,00,00,00,01,80,10,\
+	  f0,00,00,00,00,00,00,ff,ff,ff,ff,05,26,4d,6f,76,65,00,00,00,00,00,00,00,00,\
+	  01,00,00,00,00,00,00,00,01,00,00,00,00,00,00,00,00,00,00,00,01,00,00,00,00,\
+	  00,01,80,00,f0,00,00,00,00,00,00,ff,ff,ff,ff,05,26,53,69,7a,65,00,00,00,00,\
+	  00,00,00,00,01,00,00,00,00,00,00,00,01,00,00,00,00,00,00,00,00,00,00,00,01,\
+	  00,00,00,00,00,01,80,20,f0,00,00,00,00,00,00,ff,ff,ff,ff,09,4d,69,26,6e,69,\
+	  6d,69,7a,65,00,00,00,00,00,00,00,00,01,00,00,00,00,00,00,00,01,00,00,00,00,\
+	  00,00,00,00,00,00,00,01,00,00,00,00,00,01,80,30,f0,00,00,00,00,00,00,ff,ff,\
+	  ff,ff,09,4d,61,26,78,69,6d,69,7a,65,00,00,00,00,00,00,00,00,01,00,00,00,00,\
+	  00,00,00,01,00,00,00,00,00,00,00,00,00,00,00,01,00,00,00,00,00,ff,ff,01,00,\
+	  12,00,43,42,43,47,50,54,6f,6f,6c,62,61,72,42,75,74,74,6f,6e,00,00,00,00,01,\
+	  00,00,00,ff,ff,ff,ff,00,00,00,00,00,00,00,00,00,00,00,00,00,01,00,00,00,01,\
+	  00,00,00,01,80,ff,ff,ff,ff,00,00,00,00,ff,ff,ff,ff,16,4d,61,6e,61,67,65,20,\
+	  77,69,6e,64,6f,77,20,73,65,74,74,69,6e,67,73,00,00,00,00,00,00,00,00,01,00,\
+	  00,00,00,00,00,00,01,00,00,00,00,00,00,00,00,00,00,00,01,00,00,00,06,00,01,\
+	  80,8a,05,00,00,00,00,00,00,ff,ff,ff,ff,2b,4d,6f,64,69,66,79,20,61,70,70,6c,\
+	  69,65,64,20,73,65,74,74,69,6e,67,73,3a,20,22,44,65,66,61,75,6c,74,20,53,65,\
+	  74,74,69,6e,67,73,22,01,00,00,00,00,00,00,00,00,00,00,00,01,00,00,00,01,00,\
+	  00,00,00,00,00,00,00,00,00,00,01,00,00,00,00,00,01,80,8b,05,00,00,00,00,00,\
+	  00,ff,ff,ff,ff,10,52,65,61,70,70,6c,79,20,73,65,74,74,69,6e,67,73,01,00,00,\
+	  00,00,00,00,00,00,00,00,00,01,00,00,00,01,00,00,00,00,00,00,00,00,00,00,00,\
+	  01,00,00,00,00,00,01,80,8c,05,00,00,00,00,04,00,ff,ff,ff,ff,00,01,00,00,00,\
+	  00,00,00,00,00,00,00,00,01,00,00,00,01,00,00,00,00,00,00,00,00,00,00,00,01,\
+	  00,00,00,00,00,01,80,8d,05,00,00,00,00,00,00,ff,ff,ff,ff,1c,43,72,65,61,74,\
+	  65,20,6e,65,77,20,73,70,65,63,69,66,69,63,20,73,65,74,74,69,6e,67,73,01,00,\
+	  00,00,00,00,00,00,00,00,00,00,01,00,00,00,01,00,00,00,00,00,00,00,00,00,00,\
+	  00,01,00,00,00,00,00,01,80,8e,05,00,00,00,00,04,00,ff,ff,ff,ff,00,01,00,00,\
+	  00,00,00,00,00,00,00,00,00,01,00,00,00,01,00,00,00,00,00,00,00,00,00,00,00,\
+	  01,00,00,00,00,00,01,80,8f,05,00,00,00,00,00,00,ff,ff,ff,ff,13,45,78,63,6c,\
+	  75,64,65,20,74,68,69,73,20,77,69,6e,64,6f,77,01,00,00,00,00,00,00,00,00,00,\
+	  00,00,01,00,00,00,01,00,00,00,00,00,00,00,00,00,00,00,01,00,00,00,00,00,07,\
+	  80,00,00,00,00,01,00,00,00,ff,ff,ff,ff,00,00,00,00,00,00,00,00,00,00,00,00,\
+	  00,01,00,00,00,01,00,00,00,01,80,79,05,00,00,00,00,04,00,ff,ff,ff,ff,0a,4d,\
+	  6f,76,65,20,74,6f,2e,2e,2e,00,00,00,00,00,00,00,00,01,00,00,00,00,00,00,00,\
+	  01,00,00,00,00,00,00,00,00,00,00,00,01,00,00,00,00,00,01,80,7a,05,00,00,00,\
+	  00,05,00,ff,ff,ff,ff,04,53,6e,61,70,00,00,00,00,00,00,00,00,01,00,00,00,00,\
+	  00,00,00,01,00,00,00,00,00,00,00,00,00,00,00,01,00,00,00,00,00,01,80,7b,05,\
+	  00,00,00,00,04,00,ff,ff,ff,ff,1d,4d,61,78,69,6d,69,7a,65,20,74,6f,20,64,65,\
+	  73,6b,74,6f,70,09,57,69,6e,2b,4e,75,6d,20,2a,00,00,00,00,00,00,00,00,01,00,\
+	  00,00,00,00,00,00,01,00,00,00,00,00,00,00,00,00,00,00,01,00,00,00,00,00,01,\
+	  80,ff,ff,ff,ff,00,00,00,00,ff,ff,ff,ff,06,4d,69,72,72,6f,72,00,00,00,00,00,\
+	  00,00,00,01,00,00,00,00,00,00,00,01,00,00,00,00,00,00,00,00,00,00,00,01,00,\
+	  00,00,01,00,01,80,7d,05,00,00,00,00,00,00,ff,ff,ff,ff,17,53,74,61,72,74,20,\
+	  6d,69,72,72,6f,72,09,57,69,6e,2b,43,74,72,6c,2b,4d,01,00,00,00,00,00,00,00,\
+	  00,00,00,00,01,00,00,00,01,00,00,00,00,00,00,00,00,00,00,00,01,00,00,00,00,\
+	  00,01,80,ff,ff,ff,ff,00,00,00,00,ff,ff,ff,ff,07,4f,70,74,69,6f,6e,73,00,00,\
+	  00,00,00,00,00,00,01,00,00,00,00,00,00,00,01,00,00,00,00,00,00,00,00,00,00,\
+	  00,01,00,00,00,02,00,01,80,ff,ff,ff,ff,00,00,00,00,ff,ff,ff,ff,04,53,6e,61,\
+	  70,01,00,00,00,00,00,00,00,00,00,00,00,01,00,00,00,01,00,00,00,00,00,00,00,\
+	  00,00,00,00,01,00,00,00,05,00,01,80,80,05,00,00,00,00,01,00,ff,ff,ff,ff,1d,\
+	  54,6f,20,6d,6f,6e,69,74,6f,72,2f,64,65,73,6b,74,6f,70,20,62,6f,75,6e,64,61,\
+	  72,69,65,73,01,00,00,00,00,00,00,00,00,00,00,00,01,00,00,00,01,00,00,00,00,\
+	  00,00,00,00,00,00,00,01,00,00,00,00,00,01,80,81,05,00,00,00,00,00,00,ff,ff,\
+	  ff,ff,10,54,6f,20,6f,74,68,65,72,20,77,69,6e,64,6f,77,73,01,00,00,00,00,00,\
+	  00,00,00,00,00,00,01,00,00,00,01,00,00,00,00,00,00,00,00,00,00,00,01,00,00,\
+	  00,00,00,01,80,82,05,00,00,00,00,04,00,ff,ff,ff,ff,0b,46,72,6f,6d,20,69,6e,\
+	  73,69,64,65,01,00,00,00,00,00,00,00,00,00,00,00,01,00,00,00,01,00,00,00,00,\
+	  00,00,00,00,00,00,00,01,00,00,00,00,00,01,80,83,05,00,00,00,00,00,00,ff,ff,\
+	  ff,ff,0b,54,6f,20,74,68,65,20,67,72,69,64,01,00,00,00,00,00,00,00,00,00,00,\
+	  00,01,00,00,00,01,00,00,00,00,00,00,00,00,00,00,00,01,00,00,00,00,00,01,80,\
+	  84,05,00,00,00,00,01,00,ff,ff,ff,ff,18,54,6f,20,44,65,73,6b,74,6f,70,20,44,\
+	  69,76,69,64,65,72,20,74,69,6c,65,73,01,00,00,00,00,00,00,00,00,00,00,00,01,\
+	  00,00,00,01,00,00,00,00,00,00,00,00,00,00,00,01,00,00,00,00,00,01,80,ff,ff,\
+	  ff,ff,00,00,00,00,ff,ff,ff,ff,0f,44,65,73,6b,74,6f,70,20,44,69,76,69,64,65,\
+	  72,01,00,00,00,00,00,00,00,00,00,00,00,01,00,00,00,01,00,00,00,00,00,00,00,\
+	  00,00,00,00,01,00,00,00,01,00,01,80,86,05,00,00,00,00,00,00,ff,ff,ff,ff,17,\
+	  44,69,73,61,62,6c,65,20,44,65,73,6b,74,6f,70,20,44,69,76,69,64,65,72,01,00,\
+	  00,00,00,00,00,00,00,00,00,00,01,00,00,00,01,00,00,00,00,00,00,00,00,00,00,\
+	  00,01,00,00,00,00,00,07,80,00,00,00,00,01,00,00,00,ff,ff,ff,ff,00,00,00,00,\
+	  00,00,00,00,00,00,00,00,00,01,00,00,00,01,00,00,00,01,80,60,f0,00,00,00,00,\
+	  00,00,ff,ff,ff,ff,0d,26,43,6c,6f,73,65,09,41,6c,74,2b,46,34,00,00,00,00,00,\
+	  00,00,00,01,00,00,00,00,00,00,00,01,00,00,00,00,00,00,00,00,00,00,00,01,00,\
+	  00,00,00,00,00,00,00,00,00,ff,7f,00,00
+
+	[HKEY_CURRENT_USER\Software\CaseWare International\Working Papers\2024.00\BCGWorkspace\BCGToolbarParameters]
+	"Tooltips"=dword:00000001
+	"ShortcutKeys"=dword:00000001
+	"LargeIcons"=dword:00000000
+	"MenuAnimation"=dword:00000000
+	"RecentlyUsedMenus"=dword:00000001
+	"MenuShadows"=dword:00000001
+	"ShowAllMenusAfterDelay"=dword:00000001
+	"Look2000"=dword:00000001
+	"CommandsUsage"=hex:2c,00,00,00,06,00,9e,e0,00,00,01,00,00,00,ed,03,00,00,08,\
+	  00,00,00,01,41,00,00,05,00,00,00,d9,40,00,00,04,00,00,00,b5,42,00,00,18,00,\
+	  00,00,ee,03,00,00,02,00,00,00
+
+	[HKEY_CURRENT_USER\Software\CaseWare International\Working Papers\2024.00\BCGWorkspace\ControlBars-Summary]
+	"Bars"=dword:00000000
+	"ScreenCX"=dword:00000780
+	"ScreenCY"=dword:00000438
+
+	
